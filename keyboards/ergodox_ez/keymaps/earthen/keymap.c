@@ -1,5 +1,4 @@
-#include "ez/ez.h"
-#include "ergodox.h"
+#include QMK_KEYBOARD_H
 
 #include "debug.h"
 #include "action_layer.h"
@@ -38,12 +37,6 @@
 #define CHOME M(15)
 #define MOVEWINDOW M(16)
 
-// Tap Dance declarations
-enum {
-  TD_U_COPY = 0,
-  TD_H_PASTE,
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
@@ -68,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-[BASE] = KEYMAP(  // layer 0 : default
+[BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         LCTL(CH_PARA),         CH_1,           CH_2,     CH_3,     CH_4,     CH_5,   KC_ESC,
         LT(SUBL,KC_TAB),        CH_UE,        CH_COMM,   KC_DOT, CH_P,   CH_Y,   KC_DELT,
@@ -111,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
-[GAME] = KEYMAP(  // layer 1 : default
+[GAME] = LAYOUT_ergodox(  // layer 1 : default
         // left hand
         CH_PARA,         CH_1,           CH_2,     CH_3,     CH_4,     CH_5,   KC_ESC,
         LT(SUBL,KC_TAB),         CH_Q,           CH_W,     CH_E,     CH_R,     CH_T,   KC_DELT,
@@ -152,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[SYMB] = KEYMAP(
+[SYMB] = LAYOUT_ergodox(
        // left hand
        _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  _______,
        _______,CH_EXLM,CH_AT,  CH_LCBR,CH_RCBR,CH_PIPE,_______,
@@ -193,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[NUMB] = KEYMAP(
+[NUMB] = LAYOUT_ergodox(
        // left hand
         _______,     KC_F1,     KC_F2,      KC_F3,      KC_F4,      KC_F5,      _______,     
         _______,     KC_F4,      KC_F3,    KC_F2,    KC_F1,    CH_0,    _______,     
@@ -234,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[WORK] = KEYMAP(
+[WORK] = LAYOUT_ergodox(
        _______, _______, _______, _______, _______, _______, _______,
        _______, LGUI(CH_L), MAIL, XXXXXXX, LALT(KC_F4), XXXXXXX, _______,
        OSM(MOD_LCTL | MOD_LSFT), XXXXXXX, XXXXXXX, KC_MYCM, LCTL(CH_L), KC_LGUI,
@@ -277,7 +270,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * 
  */
 // Sublimetext
-[SUBL] = KEYMAP(
+[SUBL] = LAYOUT_ergodox(
        _______,             LCTL(LSFT(CH_P)),    KC_F2,               _______,       _______,       KC_F5,               _______,
        _______,             LCTL(LSFT(LALT(KC_A))),         LCTL(LSFT(LALT(KC_O))),         LCTL(LSFT(LALT(KC_E))),   LCTL(LSFT(LALT(KC_I))),   CLOSEFILE,           _______,
        _______,             _______,             SELECTOMARK,         DELETEMARK,    MARK,          LCTL(CH_M),
@@ -304,11 +297,6 @@ const uint16_t PROGMEM fn_actions[] = {
     [3] = ACTION_MODS_TAP_KEY(MOD_RALT, CH_MINS),       // FN3 - AltGr or -
     [4] = ACTION_LAYER_TAP_TOGGLE(SYMB),                 // FN4 - Momentary Layer 4 (Windows)
     [5] = ACTION_MODS_TAP_KEY(MOD_LCTL, KC_CAPS)        // FN5 - Control or CAPS
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_U_COPY] = ACTION_TAP_DANCE_DOUBLE(CH_U, LCTL(CH_C)),
-  [TD_H_PASTE] = ACTION_TAP_DANCE_DOUBLE(CH_H, LCTL(CH_V))
 };
 
 // void dance_copy (qk_tap_dance_state_t *state, void *user_data) {
