@@ -232,3 +232,59 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       }
     return MACRO_NONE;
 };
+
+struct cRGB led[RGBLED_NUM];
+void rgbsps_set(uint8_t index, uint8_t r, uint8_t g, uint8_t b) {
+  led[index].r = r;
+  led[index].g = g;
+  led[index].b = b;
+}
+void rgbsps_setall(uint8_t r, uint8_t g, uint8_t b) {
+  for (uint16_t i = 0; i < RGBLED_NUM; i++) {
+    rgbsps_set(i, r, g, b);
+  }
+}
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
+
+  uint8_t layer = biton32(layer_state);
+
+  switch (layer) {
+  //   case LOWER:
+  //   rgbsps_setall(0,255,0);
+  //     break;
+     case SYMB:
+  //   case SYMBUS:
+       rgbsps_setall(255,165,0); // yellow
+       break;
+  //   case RAISE:
+  //     rgbsps_setall(0,0,255); //blue
+  //     break;
+  //   case CODE:
+  //     rgbsps_setall(255,0,255); // lila
+  //     break;
+  //   case MOUSE:
+  //     rgbsps_setall(160,50,0); //orange
+  //     break;
+  //   case ADJUST:
+  //     rgbsps_setall(255,0,0); // red
+  //     break;
+  // case DESKTOP:
+  //   rgbsps_setall(0,100,0); // green
+  //   break;
+  // case INTELLIJ:
+  //   rgbsps_setall(0,206,209); // red
+  //   break;
+  default:
+    //      if (RGB_LIGHT_STATUS)
+    // {
+    //    rgbsps_setall(255,255,255); // white
+    //  }
+    //  else {
+        rgbsps_setall(0,0,0); // none
+        //  }
+      break;
+  }
+  ws2812_setleds(led, RGBLED_NUM);
+};
