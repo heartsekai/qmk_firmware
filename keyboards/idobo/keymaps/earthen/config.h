@@ -17,7 +17,8 @@
 #pragma once
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
-#define RGBLIGHT_VAL_STEP 17
+#define RGBLIGHT_VAL_STEP 9
 #define RGBLIGHT_LIMIT_VAL 255
+#define PERMISSIVE_HOLD
 // place overrides here
 

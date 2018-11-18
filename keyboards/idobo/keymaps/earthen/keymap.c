@@ -42,23 +42,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------|
  * |BlockNUM| ü      | ;      | .      | P      | Y      | Del    |        | MEHTab | F      | G      | C      | T      | Z      | CODE   |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
- * | Tab/SMB| A      | O      | E      | I      | U      | CopyCut|        | RUN    | H      | D      | R      | N      | S      | L/SYMB |
+ * | Tab/SMB| A      | O      | E      | I      | U      | CopyCut|  GAME  | RUN    | H      | D      | R      | N      | S      | L/SYMB |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
- * | ä/Shift| ö      | Q      | J      | K      | X      | Paste  |        |        | B      | M      | W      | V      | -/AltGr| RSHIFT |
+ * | ä/Shift| ö      | Q      | J      | K      | X      | Paste  |        |   APP  | B      | M      | W      | V      | -/AltGr| RSHIFT |
  * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
- * | LCtrl  | LAlt   | LGui   | Ctrl + | Alt +  | BACKSP | DEL    |        | ENTER  | SPACE  |   UP   |  DOWN  |  LEFT  |  RIGHT | RCTRL  |
- * | LCtrl  | LAlt   |        | Shift  | Shift  | WORK   | NUMB   |        | WORK   | NUMB   |  ALT   |        |        |        |        |
+ * | LCtrl  | LAlt   | LGui   | Ctrl + | Alt +  | BACKSP | DEL    |   Win  | ENTER  | SPACE  |   UP   |  DOWN  |  LEFT  |  RIGHT | RCTRL  |
+ * | LCtrl  | LAlt   |        | Shift  | Shift  | WORK   | NUMB   |        | WORK   | NUMB   |  ALT   |   Ctrl |        |        |        |
  * '--------------------------------------------------------------------------------------------------------------------------------------'
  */
 
  [BASE] = { /* QWERTY */
   { KC_ESC,     CH_1,    CH_2,    CH_3,                     CH_4,                     CH_5,             KC_PSCR,           TG(_FN), TG(NUMB),          CH_6,             CH_7,     CH_8,    CH_9,    CH_0,    LCTL(CH_PARA)          },
   { KC_CAPS,   CH_UE,   CH_COMM, KC_DOT,                   CH_P,                     CH_Y,             KC_DELT,          XXXXXXX, HYPR(KC_TAB),     CH_F,             CH_G,     CH_C,    CH_T,    CH_Z,    KC_BSPC },
-  { LT(SYMB, KC_TAB),  CH_A,    CH_O,    CH_E,                     CH_I,                     CH_U,             COPYCUT,        XXXXXXX, HYPR(KC_TAB),          CH_H,             CH_D,     CH_R,    CH_N,    CH_S,    LT(SYMB,CH_L)    },
-  { SFT_T(CH_AE),      CH_OE,   CH_Q,    CH_J,                     CH_K,                     CH_X,             PASTE,            XXXXXXX, LGUI(CH_R),       CH_B,             CH_M,     CH_W,    CH_V,    CH_MINS,  KC_LSFT          },
-  {  KC_LCTL,          KC_LALT, KC_LGUI, OSM(MOD_LCTL | MOD_LSFT), OSM(MOD_RALT | MOD_LSFT), LT(NUMB,KC_BSPC), LT(WORK,KC_DELT), XXXXXXX, LT(NUMB, KC_ENT), LT(WORK,KC_SPC),  ALT_T(KC_UP), KC_DOWN, KC_LEFT, KC_RIGHT, KC_RCTL          },
+  { LT(SYMB, KC_TAB),  CH_A,    CH_O,    CH_E,                     CH_I,                     CH_U,             COPYCUT,        TG(GAME), HYPR(KC_TAB),          CH_H,             CH_D,     CH_R,    CH_N,    CH_S,    LT(SYMB,CH_L)    },
+  { SFT_T(CH_AE),      CH_OE,   CH_Q,    CH_J,                     CH_K,                     CH_X,             PASTE,            XXXXXXX, ALT_T(KC_APP),       CH_B,             CH_M,     CH_W,    CH_V,    CH_MINS,  KC_LSFT          },
+  {  KC_LCTL,          KC_LALT, KC_LGUI, OSM(MOD_LCTL | MOD_LSFT), OSM(MOD_RALT | MOD_LSFT), LT(NUMB,KC_BSPC), LT(WORK,KC_DELT), KC_LGUI, LT(NUMB, KC_ENT), LT(WORK,KC_SPC),  ALT_T(KC_UP), RCTL_T(KC_DOWN), KC_LEFT, KC_RIGHT, KC_RCTL          },
  },
 
+/* GAME
+ * .--------------------------------------------------------------------------------------------------------------------------------------.
+ * |    §   |   1    |   2    |   3    |   4    |   5    |   ESC  |        |        |    6   |   7    |   8    |    9   |    0   |        |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ * |  CAPS  |   Q    |   W    |   E    |   R    |   T    |        |        |        |    Z   |   U    |   I    |    O   |    P   |   Ü    |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ * |  TAB   |   A    |   S    |   D    |   F    |   G    |        |        |        |    H   |   J    |   K    |    L   |    Ö   |   Ä    |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ * |  SHIFT |   Y    |   X    |   C    |   V    |   B    |        |        |        |    N   |   M    |   .    |    ,   |   -    |  SHIFT |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ * |  CTRL  |   ALT  |   WIN  |  ENTER | SPACE  | SPACE  | SPACE  | SPACE  | SPACE  | SPACE  |        |        |        |        |  CTRL  |
+ * '--------------------------------------------------------------------------------------------------------------------------------------'
+ */
+ [GAME] = { \
+  { KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_GRV },
+  { KC_CAPS,  KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC, KC_DEL },
+  { LT(SYMB, KC_TAB), KC_A,     KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,  KC_ENT,  KC_PGUP },
+  { KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, KC_RSFT, KC_UP,   KC_PGDN },
+  { KC_LCTL, KC_LALT, KC_LGUI, KC_ENTER,  KC_SPC,  KC_SPC,  KC_SPC,  KC_SPC,  KC_SPC,  KC_RALT, KC_RCTL, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT },
+ },
 /* SYMBOLS
  * .--------------------------------------------------------------------------------------------------------------------------------------.
  * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -119,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [WORK] = { /* WORK Layer */
   { _______,                  _______,    _______,  _______,            _______,      _______, _______, _______, _______, _______,      _______,    _______,    _______,  _______, _______  },
-  { _______,                  LGUI(CH_L), MAILWORK, MAILPRIV,           LALT(KC_F4),  XXXXXXX, _______, _______, _______, MOVEWINDOW,   KC_HOME,    KC_UP,      KC_END,   XXXXXXX, _______  },
+  { OSM(MOD_LCTL | MOD_LALT), LGUI(CH_L), MAILWORK, MAILPRIV,           LALT(KC_F4),  XXXXXXX, _______, _______, _______, MOVEWINDOW,   KC_HOME,    KC_UP,      KC_END,   XXXXXXX, _______  },
   { OSM(MOD_LCTL | MOD_LSFT), XXXXXXX,    XXXXXXX,  KC_MYCM,            LCTL(CH_L),   KC_LGUI, _______, _______, _______, LGUI(KC_TAB), KC_LEFT,    KC_DOWN,    KC_RIGHT, XXXXXXX, _______  },
   { KC_LSFT,                  XXXXXXX,    XXXXXXX,  LCTL(LSFT(KC_TAB)), LCTL(KC_TAB), XXXXXXX, _______, _______, _______, LALT(KC_TAB), LCTL(CH_Z), LCTL(CH_Y), XXXXXXX,  XXXXXXX, _______  },
   { _______,                  _______,    _______,  _______,            _______,      _______, _______, _______, _______, _______,      _______,    _______,    _______,  _______, _______  },
@@ -251,6 +271,6 @@ void matrix_scan_user(void) {
       rgblight_setrgb (0x7A, 0x00, 0xFF); // purple
       break;
   default:
-      rgblight_setrgb (0xFF, 0xFF, 0xFF); // White
+      rgblight_setrgb (0x00, 0x00, 0x00); // White
   }
 };
