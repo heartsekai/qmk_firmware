@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |  Back|      | PgUp |       | PgDn |        |      |
  *                                 |Space/| Del /|------|       |------|  Enter/|Space/|
- *                                 | NUMB | WORK |Home/MD|      | Alt |  WORK  | NUMB  |
+ *                                 | NUMB | WORK |Home/MD|      |AppViw|  WORK  | NUMB  |
  *                                 `--------------------'       `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         LCTL(CH_PARA),         CH_1,           CH_2,     CH_3,     CH_4,     CH_5,   KC_ESC,
         LT(SUBL,KC_TAB),        CH_UE,        CH_COMM,   KC_DOT, CH_P,   CH_Y,   KC_DELT,
-        LT(SYMB, KC_TAB),        CH_A,         CH_O,   CH_E,   CH_I,   CH_U,  
+        LT(SYMB, KC_TAB),        CH_A,         CH_O,   CH_E,   CH_I,   CH_U,
         SFT_T(CH_AE),CH_OE,      CH_Q,   CH_J,   CH_K,   CH_X,   COPYPASTE,
         KC_LCTL,                KC_LALT,        KC_LGUI, OSM(MOD_LCTL | MOD_LSFT), OSM(MOD_RALT | MOD_LSFT),
                                               KC_ENT,  KC_LGUI,
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_UP,  KC_DOWN,KC_LEFT,KC_RGHT,          KC_FN5,
              TG(GAME),        ALT_T(KC_APP),
              KC_PGDN,
-             KC_LALT,LT(NUMB,KC_ENT), LT(WORK,KC_SPC)
+             LCTL(LALT(KC_TAB)),LT(NUMB,KC_ENT), LT(WORK,KC_SPC)
  ),
 /* Keymap 1: GAME layer
  *
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_PGDN,KC_DELT, KC_ENT
 ),
 /* Keymap 1: Symbol Layer
- * 
+ *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
@@ -188,22 +188,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [NUMB] = LAYOUT_ergodox(
        // left hand
-        _______,     KC_F1,     KC_F2,      KC_F3,      KC_F4,      KC_F5,      _______,     
-        _______,     KC_F4,      KC_F3,    KC_F2,    KC_F1,    CH_0,    _______,     
-        OSM(MOD_LCTL | MOD_LSFT),     KC_F8,   KC_F7,     KC_F6,    KC_F5,    CH_5,     
-        KC_LSFT,     KC_F12,   KC_F11,    KC_F10,    KC_F9,    CH_1,    _______,     
-        _______,     _______,   _______,    _______,    _______,     
-                                                                    _______,    _______,    
-                                                                                _______,     
+        _______,     KC_F1,     KC_F2,      KC_F3,      KC_F4,      KC_F5,      _______,
+        _______,     KC_F4,      KC_F3,    KC_F2,    KC_F1,    CH_0,    _______,
+        OSM(MOD_LCTL | MOD_LSFT),     KC_F8,   KC_F7,     KC_F6,    KC_F5,    CH_5,
+        KC_LSFT,     KC_F12,   KC_F11,    KC_F10,    KC_F9,    CH_1,    _______,
+        _______,     _______,   _______,    _______,    _______,
+                                                                    _______,    _______,
+                                                                                _______,
                                                         _______,    _______,    _______,
         // right hand
-        _______,    KC_F6,      KC_F7,      CH_EQL,      KC_F9,      KC_F10,     KC_F11,  
-        _______,    LSFT(CH_2), CH_7,       CH_8,       CH_9,       KC_PAST,    KC_F12,    
-                    KC_PSLS,    CH_4,       CH_5,       CH_6,       KC_PPLS,    _______,    
-        _______,    CH_AMPR,    CH_1,       CH_2,       CH_3,       CH_MINS,    KC_NLCK,   
-                    KC_SPC,     DOUBLE0,    KC_DOT,     CH_EQL,     _______,  
-        _______,    _______,   
-        _______,   
+        _______,    KC_F6,      KC_F7,      CH_EQL,      KC_F9,      KC_F10,     KC_F11,
+        _______,    LSFT(CH_2), CH_7,       CH_8,       CH_9,       KC_PAST,    KC_F12,
+                    KC_PSLS,    CH_4,       CH_5,       CH_6,       KC_PPLS,    _______,
+        _______,    CH_AMPR,    CH_1,       CH_2,       CH_3,       CH_MINS,    KC_NLCK,
+                    KC_SPC,     DOUBLE0,    KC_DOT,     CH_EQL,     _______,
+        _______,    _______,
+        _______,
         _______,    _______,    CH_0
 ),
 /* Keymap 3: Working
@@ -215,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | CrlShf |      |      |WinExp|AdrBar| LGui |------|           |------|TaskVw| Left | Down | Right|      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |    Shf |      |      |PrvTab|NexTab|      |      |           |      |NexWin| Undo | Redo |      |      |        |
+ * |    Shf |      |      |PrvTab|NexTab|      |      |           |      |NexWin| Undo | Redo |WSLeft|WSRigt|        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |     |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -240,7 +240,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______,  _______,  _______, _______, _______, _______, _______,
        _______,  MOVEWINDOW, KC_HOME, KC_UP, KC_END, XXXXXXX, XXXXXXX,
                  LGUI(KC_TAB), KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, _______,
-       _______,  LALT(KC_TAB), LCTL(CH_Z), LCTL(CH_Y), XXXXXXX, XXXXXXX, _______,
+       _______,  LALT(KC_TAB), LCTL(CH_Z), LCTL(CH_Y), LGUI(LCTL(KC_LEFT)), LGUI(LCTL(KC_RIGHT)), _______,
                           _______, _______, _______, _______, _______,
        _______, _______,
        _______,
@@ -267,7 +267,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  * JFun = Jump function
- * 
+ *
  */
 // Sublimetext
 [SUBL] = LAYOUT_ergodox(
