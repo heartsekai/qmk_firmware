@@ -33,9 +33,15 @@
 #define MARK M(11)
 #define DELETEMARK M(12)
 #define SELECTOMARK M(13)
-#define MAIL M(14)
+#define MAILWORK M(14)
 #define CHOME M(15)
 #define MOVEWINDOW M(16)
+#define MAILPRIV M(17)
+#define MAILGOGL M(18)
+
+#define NextDesk LGUI(LCTL(KC_RIGHT))
+#define PrevDesk LGUI(LCTL(KC_LEFT))
+#define ShowWindows LCTL(LALT(KC_TAB))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -64,19 +70,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         LCTL(CH_PARA),         CH_1,           CH_2,     CH_3,     CH_4,     CH_5,   KC_ESC,
-        LT(SUBL,KC_TAB),        CH_UE,        CH_COMM,   KC_DOT, CH_P,   CH_Y,   KC_DELT,
+        ALT_T(KC_TAB),        CH_UE,        CH_COMM,   KC_DOT, CH_P,   CH_Y,   KC_DELT,
         LT(SYMB, KC_TAB),        CH_A,         CH_O,   CH_E,   CH_I,   CH_U,
         SFT_T(CH_AE),CH_OE,      CH_Q,   CH_J,   CH_K,   CH_X,   COPYPASTE,
-        KC_LCTL,                KC_LALT,        KC_LGUI, OSM(MOD_LCTL | MOD_LSFT), OSM(MOD_RALT | MOD_LSFT),
+        KC_LCTL,                KC_LALT,        KC_LGUI, OSM(MOD_RALT | MOD_LSFT), OSM(MOD_LCTL | MOD_LSFT),
                                               KC_ENT,  KC_LGUI,
                                                               KC_PGUP,
                                                LT(NUMB,KC_BSPC),LT(WORK,KC_DELT),MEH_T(KC_HOME),
         // right hand
              TG(NUMB),     CH_6,   CH_7,    CH_8,    CH_9,   CH_0,             KC_PSCR,
-             HYPR(KC_TAB),    CH_F,   CH_G,   CH_C,   CH_T,   CH_Z,             LT(SUBL,KC_BSPC),
+             HYPR(KC_TAB),    CH_F,   CH_G,   CH_C,   CH_T,   CH_Z,             ALT_T(KC_CAPS),
                           CH_H,   CH_D,   CH_R,   CH_N,   CH_S,             LT(SYMB,CH_L),
              LGUI(CH_R),     CH_B,   CH_M,   CH_W,   CH_V,   KC_FN3,   KC_LSFT,
-                                  KC_UP,  KC_DOWN,KC_LEFT,KC_RGHT,          KC_FN5,
+                                  RCTL_T(KC_UP), ALT_T(KC_DOWN),KC_LEFT,KC_RGHT,          KC_RCTL,
              TG(GAME),        ALT_T(KC_APP),
              KC_PGDN,
              LCTL(LALT(KC_TAB)),LT(NUMB,KC_ENT), LT(WORK,KC_SPC)
@@ -229,8 +235,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [WORK] = LAYOUT_ergodox(
        _______, _______, _______, _______, _______, _______, _______,
-       _______, LGUI(CH_L), MAIL, XXXXXXX, LALT(KC_F4), XXXXXXX, _______,
-       OSM(MOD_LCTL | MOD_LSFT), XXXXXXX, XXXXXXX, KC_MYCM, LCTL(CH_L), KC_LGUI,
+       OSM(MOD_LCTL | MOD_LALT), MAILGOGL, MAILWORK, MAILPRIV, LALT(KC_F4), XXXXXXX, _______,
+       OSM(MOD_LCTL | MOD_LSFT), LGUI(CH_L), XXXXXXX, KC_MYCM, LCTL(CH_L), KC_LGUI,
        KC_LSFT, XXXXXXX, XXXXXXX, LCTL(LSFT(KC_TAB)), LCTL(KC_TAB), XXXXXXX, _______,
        _______, _______, _______, _______, _______,
                                            _______, _______,
@@ -239,8 +245,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // right hand
        _______,  _______,  _______, _______, _______, _______, _______,
        _______,  MOVEWINDOW, KC_HOME, KC_UP, KC_END, XXXXXXX, XXXXXXX,
-                 LGUI(KC_TAB), KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, _______,
-       _______,  LALT(KC_TAB), LCTL(CH_Z), LCTL(CH_Y), LGUI(LCTL(KC_LEFT)), LGUI(LCTL(KC_RIGHT)), _______,
+                 ShowWindows, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, _______,
+       _______,  LALT(KC_TAB), LCTL(CH_Z), LCTL(CH_Y), PrevDesk, NextDesk, _______,
                           _______, _______, _______, _______, _______,
        _______, _______,
        _______,
@@ -449,6 +455,21 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           if (record->event.pressed)
             // send move Window
             return MACRO(D(LALT),T(SPACE),U(LALT),T(M),END);
+          break;
+        }
+        case 17: {
+          if (record->event.pressed)          {
+            // SEND_STRING("lustenberger.joan");
+            return MACRO(T(L),T(U),T(S),T(T),T(E),T(N),T(B),T(E),T(R),T(G),T(E),T(R),T(DOT),T(J),T(O),T(A),T(N),D(RALT),T(2),U(RALT),T(O),T(U),T(T),T(L),T(O),T(O),T(K),T(DOT),T(C),T(O),T(M),T(TAB),END);
+          }
+          break;
+        }
+        case 18: {
+          if (record->event.pressed)          {
+            // SEND_STRING("joan.badiac@gmail.com");
+            return MACRO(T(J),T(O),T(A),T(N),T(DOT),T(B),T(A),T(D),T(I),T(A),T(C),D(RALT),T(2),U(RALT),T(G),T(M),T(A),T(I),T(L),T(DOT),T(C),T(O),T(M),T(TAB),END);
+          }
+          break;
         }
       }
     return MACRO_NONE;
