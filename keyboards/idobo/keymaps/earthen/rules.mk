@@ -20,3 +20,4 @@ endif
 RGBLIGHT_ENABLE = yes
 CONSOLE_ENABLE = no        # Console for debug(+400)
 COMMAND_ENABLE = no
+TAP_DANCE_ENABLE = yes

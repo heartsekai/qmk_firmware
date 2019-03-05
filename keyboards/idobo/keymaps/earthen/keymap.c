@@ -40,6 +40,34 @@
 #define PrevDesk LGUI(LCTL(KC_LEFT))
 #define ShowWindows LCTL(LALT(KC_TAB))
 
+// Tap Dance Declarations
+enum {
+  TDF1 = 0,
+  TDF2,
+  TDF3,
+  TDF4,
+  TDF5,
+  TDF6,
+  TDF7,
+  TDF8,
+  TDF9,
+  TDF0
+};
+
+// Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TDF1] = ACTION_TAP_DANCE_DOUBLE(CH_1,KC_F1),
+  [TDF2] = ACTION_TAP_DANCE_DOUBLE(CH_2,KC_F2),
+  [TDF3] = ACTION_TAP_DANCE_DOUBLE(CH_3,KC_F3),
+  [TDF4] = ACTION_TAP_DANCE_DOUBLE(CH_4,KC_F4),
+  [TDF5] = ACTION_TAP_DANCE_DOUBLE(CH_5,KC_F5),
+  [TDF6] = ACTION_TAP_DANCE_DOUBLE(CH_6,KC_F6),
+  [TDF7] = ACTION_TAP_DANCE_DOUBLE(CH_7,KC_F9),
+  [TDF8] = ACTION_TAP_DANCE_DOUBLE(CH_8,KC_F10),
+  [TDF9] = ACTION_TAP_DANCE_DOUBLE(CH_9,KC_F11),
+  [TDF0] = ACTION_TAP_DANCE_DOUBLE(CH_0,KC_F12)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* BASE
@@ -58,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [BASE] = { /* QWERTY */
-  { KC_ESC,     CH_1,    CH_2,    CH_3,                     CH_4,                     CH_5,             KC_PSCR,           TG(_FN), TG(NUMB),          CH_6,             CH_7,     CH_8,    CH_9,    CH_0,    LCTL(CH_PARA)          },
+  { KC_ESC,     TD(TDF1),    TD(TDF2),    TD(TDF3),                     TD(TDF4),                     TD(TDF5),             KC_PSCR,           TG(_FN), TG(NUMB),          TD(TDF6),             TD(TDF7),     TD(TDF8),    TD(TDF9),    TD(TDF0),    LCTL(CH_PARA)          },
   { ALT_T(KC_TAB),   CH_UE,   CH_COMM, KC_DOT,                   CH_P,                     CH_Y,             KC_DELT,          TG(QWERTY), HYPR(KC_TAB),     CH_F,             CH_G,     CH_C,    CH_T,    CH_Z,    ALT_T(KC_CAPS) },
   { LT(SYMB, KC_TAB),  CH_A,    CH_O,    CH_E,                     CH_I,                     CH_U,             COPYCUT,        TG(GAME), HYPR(KC_TAB),          CH_H,             CH_D,     CH_R,    CH_N,    CH_S,    LT(SYMB,CH_L)    },
   { SFT_T(CH_AE),      CH_OE,   CH_Q,    CH_J,                     CH_K,                     CH_X,             PASTE,            KC_ENT, ALT_T(KC_APP),       CH_B,             CH_M,     CH_W,    CH_V,    CH_MINS,  KC_LSFT          },

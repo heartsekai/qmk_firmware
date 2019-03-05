@@ -20,5 +20,6 @@
 #define RGBLIGHT_VAL_STEP 9
 #define RGBLIGHT_LIMIT_VAL 255
 #define PERMISSIVE_HOLD
+#define TAPPING_TERM 150
 // place overrides here
 
