@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Copyright 2016 heartsekai
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,6 +21,15 @@
 
 // Alt gr
 #define ALGR(kc) RALT(kc)
+=======
+#ifndef KEYMAP_SWISS_GERMAN
+#define KEYMAP_SWISS_GERMAN
+
+#include "keymap_common.h"
+
+// Alt gr
+#define ALGR(kc) kc | 0x1400
+>>>>>>> 9407324e2bd211ff58fc408bc94a16e3950fc8dd
 #define CH_ALGR KC_RALT
 
 // normal characters
@@ -33,10 +43,13 @@
 #define CH_E KC_E
 #define CH_F KC_F
 #define CH_G KC_G
+<<<<<<< HEAD
 #ifdef CH_H
 // The ChibiOS ch.h file defines this...
 #undef CH_H
 #endif
+=======
+>>>>>>> 9407324e2bd211ff58fc408bc94a16e3950fc8dd
 #define CH_H KC_H
 #define CH_I KC_I
 #define CH_J KC_J
